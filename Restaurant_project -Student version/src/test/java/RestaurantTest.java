@@ -3,6 +3,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -25,6 +27,7 @@ class RestaurantTest {
     public void is_restaurant_open_should_return_true_if_time_is_between_opening_and_closing_time(){
         //WRITE UNIT TEST CASE HERE
         //LocalTime present_time = closingTime.minusHours(5);
+        System.out.println(restaurant.getMenu());
         LocalTime present_time = LocalTime.parse("15:45:32");
         Restaurant mockito_restaurant = Mockito.spy(restaurant);
         Mockito.when(mockito_restaurant.getCurrentTime()).thenReturn(present_time);
@@ -58,5 +61,27 @@ class RestaurantTest {
     public void removing_item_that_does_not_exist_should_throw_exception() {
         assertThrows(itemNotFoundException.class,()->restaurant.removeFromMenu("French fries"));
     }
+
+    @Test
+    public void selecting_items_in_menu_should_return_total_cost() {
+        Restaurant mockito_restaurant = Mockito.spy(restaurant);
+        mockito_restaurant.addToMenu("Masala Pappad", 100);
+        mockito_restaurant.addToMenu("Jeera rice", 350);
+        mockito_restaurant.addToMenu("Butter Milk", 125);
+        //int testTotal = 0;
+        List<String> selected_items = new ArrayList<>();
+        selected_items.add("Masala Pappad");
+        selected_items.add("Jeera rice");
+
+        assertEquals(450, mockito_restaurant.orderedTotalCost(selected_items));
+
+
+    }
+
+
+
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
 }
