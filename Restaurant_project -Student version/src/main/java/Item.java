@@ -6,6 +6,11 @@ public class Item {
         this.name = name;
         this.price = price;
     }
+    // added new
+    public int getPrice() {
+        return price;
+    }
+
 
     public String getName() {
         return name;

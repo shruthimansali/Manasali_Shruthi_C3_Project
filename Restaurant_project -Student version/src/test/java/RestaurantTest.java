@@ -72,10 +72,7 @@ class RestaurantTest {
         List<String> selected_items = new ArrayList<>();
         selected_items.add("Masala Pappad");
         selected_items.add("Jeera rice");
-
         assertEquals(450, mockito_restaurant.orderedTotalCost(selected_items));
-
-
     }
 
 
